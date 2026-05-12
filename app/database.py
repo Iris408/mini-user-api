@@ -33,3 +33,17 @@ SessionLocal = sessionmaker(
 # KR: 기본 모델
 
 Base = declarative_base()
+
+# EN: Database dependency
+# JP: データベース依存関係
+# KR: 데이터베이스 의존성
+
+def get_db():
+
+    db = SessionLocal()
+
+    try:
+        yield db
+
+    finally:
+        db.close()

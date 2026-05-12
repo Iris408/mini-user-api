@@ -1,8 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.models.user_model import UserRequest, User
-from app.database import SessionLocal
+from app.database import SessionLocal, get_db
+from app.database import get_db
 
 # EN: Create router
 # JP: ルーター作成
@@ -16,9 +17,10 @@ router = APIRouter()
 # KR: 새 사용자 생성
 
 @router.post("/users")
-def create_user(request: UserRequest):
-
-    db: Session = SessionLocal()
+def create_user(
+    request: UserRequest,
+    db: Session = Depends(get_db)
+):
 
     new_user = User(
         name=request.name,
@@ -30,8 +32,6 @@ def create_user(request: UserRequest):
     db.commit()
 
     db.refresh(new_user)
-
-    db.close()
 
     return {
         "message": "User created",
@@ -47,13 +47,9 @@ def create_user(request: UserRequest):
 # KR: 데이터베이스에서 모든 사용자 조회
 
 @router.get("/users")
-def get_users():
-
-    db: Session = SessionLocal()
+def get_users(db: Session = Depends(get_db)):
 
     users = db.query(User).all()
-
-    db.close()
 
     return {
         "users": users
@@ -64,13 +60,12 @@ def get_users():
 # KR: ID로 데이터베이스에서 사용자 1명 조회
 
 @router.get("/users/{user_id}")
-def get_user(user_id: int):
-
-    db: Session = SessionLocal()
+def get_user(
+    user_id: int,
+    db: Session = Depends(get_db)
+):
 
     user = db.query(User).filter(User.id == user_id).first()
-
-    db.close()
 
     if user:
         return {
@@ -86,26 +81,27 @@ def get_user(user_id: int):
 # KR: 데이터베이스 사용자 수정
 
 @router.put("/users/{user_id}")
-def update_user(user_id: int, request: UserRequest):
-
-    db: Session = SessionLocal()
+def update_user(
+    user_id: int,
+    request: UserRequest,
+    db: Session = Depends(get_db)
+):
 
     user = db.query(User).filter(User.id == user_id).first()
 
     if user:
+
         user.name = request.name
         user.age = request.age
 
         db.commit()
+
         db.refresh(user)
-        db.close()
 
         return {
             "message": "User updated",
             "user": user
         }
-
-    db.close()
 
     return {
         "error": "User not found"
@@ -116,9 +112,10 @@ def update_user(user_id: int, request: UserRequest):
 # KR: 데이터베이스에서 사용자 삭제
 
 @router.delete("/users/{user_id}")
-def delete_user(user_id: int):
-
-    db: Session = SessionLocal()
+def delete_user(
+    user_id: int,
+    db: Session = Depends(get_db)
+):
 
     user = db.query(User).filter(User.id == user_id).first()
 
@@ -128,13 +125,9 @@ def delete_user(user_id: int):
 
         db.commit()
 
-        db.close()
-
         return {
             "message": "User deleted"
         }
-
-    db.close()
 
     return {
         "error": "User not found"
