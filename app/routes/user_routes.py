@@ -1,6 +1,8 @@
 from fastapi import APIRouter
-from app.models.user_model import UserRequest
-from app.services.user_service import users
+from sqlalchemy.orm import Session
+
+from app.models.user_model import UserRequest, User
+from app.database import SessionLocal
 
 # EN: Create router
 # JP: ルーター作成
@@ -16,19 +18,29 @@ router = APIRouter()
 @router.post("/users")
 def create_user(request: UserRequest):
 
-    user = {
-        "id": len(users) + 1,
-        "name": request.name,
-        "age": request.age
-    }
+    db: Session = SessionLocal()
 
-    users.append(user)
+    new_user = User(
+        name=request.name,
+        age=request.age
+    )
+
+    db.add(new_user)
+
+    db.commit()
+
+    db.refresh(new_user)
+
+    db.close()
 
     return {
         "message": "User created",
-        "user": user
+        "user": {
+            "id": new_user.id,
+            "name": new_user.name,
+            "age": new_user.age
+        }
     }
-
 
 # EN: Get all users
 # JP: 全ユーザー取得
