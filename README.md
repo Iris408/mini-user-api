@@ -49,32 +49,36 @@ app/
 
 ## Installation / インストール / 설치
 
-## Installation
-
 ### Clone repository
 
-bash git clone https://github.com/Iris408/mini-user-api 
-
+```bash
+git clone https://github.com/Iris408/mini-user-api
+```
 ### Move into project folder
 
-bash cd mini_user_api 
-
+```bash
+cd mini_user_api
+```
 ### Install dependencies
 
-bash pip install -r requirements.txt 
-
+```bash
+pip install -r requirements.txt
+```
 ### Start PostgreSQL
 
-bash brew services start postgresql@18 
-
+```bash
+brew services start postgresql@18
+```
 ### Run FastAPI server
 
-bash uvicorn app.main:app --reload --port 8002 
-
+```bash
+uvicorn app.main:app --reload --port 8002
+```
 ### Open Swagger UI
 
-text http://127.0.0.1:8002/docs 
-
+```text
+http://127.0.0.1:8002/docs
+```
 ---
 
 ## API Endpoints
