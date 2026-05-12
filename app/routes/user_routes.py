@@ -42,126 +42,99 @@ def create_user(request: UserRequest):
         }
     }
 
-# EN: Get all users
-# JP: 全ユーザー取得
-# KR: 모든 사용자 가져오기
+# EN: Get all users from database
+# JP: データベースから全ユーザー取得
+# KR: 데이터베이스에서 모든 사용자 조회
 
 @router.get("/users")
 def get_users():
+
+    db: Session = SessionLocal()
+
+    users = db.query(User).all()
+
+    db.close()
+
     return {
         "users": users
     }
 
-# EN: Get user by ID
-# JP: IDでユーザー取得
-# KR: ID로 사용자 조회
+# EN: Get one user from database by ID
+# JP: IDでデータベースから1人のユーザー取得
+# KR: ID로 데이터베이스에서 사용자 1명 조회
 
 @router.get("/users/{user_id}")
 def get_user(user_id: int):
 
-    for user in users:
-        if user["id"] == user_id:
-            return {"user": user}
+    db: Session = SessionLocal()
 
-    return {"error": "User not found"}
+    user = db.query(User).filter(User.id == user_id).first()
 
+    db.close()
 
-# EN: Update user by ID
-# JP: IDでユーザー更新
-# KR: ID로 사용자 수정
-
-@router.put("/users/{user_id}")
-def update_user(user_id: int, request: UserRequest):
-
-    for user in users:
-        if user["id"] == user_id:
-            user["name"] = request.name
-            user["age"] = request.age
-
-            return {
-                "message": "User updated",
-                "user": user
-            }
-
-    return {"error": "User not found"}
-
-
-# EN: Delete user by ID
-# JP: IDでユーザー削除
-# KR: ID로 사용자 삭제
-
-@router.delete("/users/{user_id}")
-def delete_user(user_id: int):
-
-    for user in users:
-        if user["id"] == user_id:
-            users.remove(user)
-
-            return {
-                "message": "User deleted",
-                "deleted_user": user
-            }
-
-    return {"error": "User not found"}
-
-
-# EN: Get user by ID
-# JP: IDでユーザー取得
-# KR: ID로 사용자 조회
-
-@router.get("/users/{user_id}")
-def get_user(user_id: int):
-
-    for user in users:
-
-        if user["id"] == user_id:
-            return {
-                "user": user
-            }
+    if user:
+        return {
+            "user": user
+        }
 
     return {
         "error": "User not found"
     }
 
-# EN: Delete user by ID
-# JP: IDでユーザー削除
-# KR: ID로 사용자 삭제
+# EN: Update user in database
+# JP: データベース内ユーザー更新
+# KR: 데이터베이스 사용자 수정
 
-@router.delete("/users/{user_id}")
-def delete_user(user_id: int):
+@router.put("/users/{user_id}")
+def update_user(user_id: int, request: UserRequest):
 
-    for user in users:
+    db: Session = SessionLocal()
 
-        if user["id"] == user_id:
-            users.remove(user)
+    user = db.query(User).filter(User.id == user_id).first()
 
-            return {
-                "message": "User deleted",
-                "deleted_user": user
-            }
+    if user:
+        user.name = request.name
+        user.age = request.age
+
+        db.commit()
+        db.refresh(user)
+        db.close()
+
+        return {
+            "message": "User updated",
+            "user": user
+        }
+
+    db.close()
 
     return {
         "error": "User not found"
     }
 
-# EN: Update user by ID
-# JP: IDでユーザー更新
-# KR: ID로 사용자 수정
+# EN: Delete user from database
+# JP: データベースからユーザー削除
+# KR: 데이터베이스에서 사용자 삭제
 
-@router.put("/users/{user_id}")
-def update_user(user_id: int, request: UserRequest):
+@router.delete("/users/{user_id}")
+def delete_user(user_id: int):
 
-    for user in users:
+    db: Session = SessionLocal()
 
-        if user["id"] == user_id:
+    user = db.query(User).filter(User.id == user_id).first()
 
-            user["name"] = request.name
-            user["age"] = request.age
+    if user:
 
-            return {
-                "message": "User updated",
-                "user": user
-            }
+        db.delete(user)
+
+        db.commit()
+
+        db.close()
+
+        return {
+            "message": "User deleted"
+        }
+
+    db.close()
 
     return {
         "error": "User not found"
