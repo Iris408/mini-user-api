@@ -9,8 +9,8 @@ from app.database import Base
 # KR: Pydantic 요청 모델
 
 class UserRequest(BaseModel):
-    name: str
-    age: int
+    username: str
+    password: str
 
 
 # EN: SQLAlchemy database model
@@ -23,6 +23,6 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    name = Column(String, index=True)
+    username = Column(String, unique=True, index=True)
 
-    age = Column(Integer)
+    hashed_password = Column(String)
