@@ -112,7 +112,9 @@ def verify_token(token: str):
         if username is None:
             return None
 
-        return username
+        return }
+            "username": username
+        }
 
     except JWTError:
 
@@ -136,4 +138,6 @@ def get_current_user(
             detail="Invalid authentication credentials"
         )
 
-    return username
+    return }
+        "username": username
+    }

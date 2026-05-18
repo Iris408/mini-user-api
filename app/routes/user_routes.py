@@ -113,28 +113,19 @@ def login_user(
 
 @router.get("/profile")
 def get_profile(
-    current_user: str = Depends(get_current_user)
+    current_user = Depends(get_current_user)
+    db: Session = Depends(get_db)
 ):
 
-    return {
-        "message": "Protected profile accessed",
-        "current_user": current_user
-    }
-
-
-# EN: Protected profile route
-# JP: 保護プロフィールルート
-# KR: 보호 프로필 라우트
-
-@router.get("/profile")
-def get_profile(
-    current_user: str = Depends(get_current_user)
-):
+    user = db.query(User).filter(
+        User.username == current_user["username"]
+    ).first()
 
     return {
-        "message": "Protected profile accessed",
-        "current_user": current_user
+        "id": user.id,
+        "username": user.username
     }
+
 
 # EN: Invalid username check
 # JP: 無効ユーザー名確認
