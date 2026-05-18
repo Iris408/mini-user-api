@@ -1,3 +1,9 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # EN: Authentication utilities
 # JP: 認証ユーティリティ
 # KR: 인증 유틸리티
@@ -46,7 +52,7 @@ from fastapi.security import OAuth2PasswordBearer
 # JP: JWT 設定
 # KR: JWT 설정
 
-SECRET_KEY = "mysecertkey"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 ALGORITHM = "HS256"
 
