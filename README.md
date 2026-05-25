@@ -91,10 +91,25 @@ CREATE DATABASE mini_user_api_db;
 ```bash
 uvicorn app.main:app --reload --port 8002
 ```
+---
+
+## Run with Docker
+
+```bash
+docker compose up --build
+```
 
 • Open Swagger UI
 ```text
 http://127.0.0.1:8002/docs
+```
+
+```text
+If `docker compose` does not work on someone’s machine, they can try:
+```
+
+```bash
+docker-compose up --build
 ```
 
 ---
