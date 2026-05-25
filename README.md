@@ -53,6 +53,7 @@ app/
 ├── services/
 ├── database.py
 └── main.py
+```
 
 ---
 
