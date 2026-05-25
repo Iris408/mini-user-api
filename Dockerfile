@@ -2,7 +2,7 @@
 # JP: Python ベースイメージ
 # KR: Python 베이스 이미지
 
-FROM python:3.13
+FROM python:3.11
 
 # EN: Working directory
 # JP: 作業ディレクトリ

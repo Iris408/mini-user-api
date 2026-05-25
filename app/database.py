@@ -1,14 +1,18 @@
 import os
+
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 
-# EN: PostgreSQL database URL
-# JP: PostgreSQL データベースURL
-# KR: PostgreSQL 데이터베이스 URL
+# EN: Database URL can come from environment variable
+# JP: データベースURLは環境変数から取得可能
+# KR: 데이터베이스 URL은 환경 변수에서 가져올 수 있음
 
-DATABASE_URL = "postgresql://amagloire@localhost:5432/mini_user_api_db"
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://amagloire@localhost:5432/mini_user_api_db"
+)
+
 
 # EN: Create database engine
 # JP: データベースエンジン作成
@@ -17,9 +21,9 @@ DATABASE_URL = "postgresql://amagloire@localhost:5432/mini_user_api_db"
 engine = create_engine(DATABASE_URL)
 
 
-# EN: Database session
-# JP: データベースセッション
-# KR: 데이터베이스 세션
+# EN: Create database session
+# JP: データベースセッション作成
+# KR: 데이터베이스 세션 생성
 
 SessionLocal = sessionmaker(
     autocommit=False,
@@ -28,18 +32,18 @@ SessionLocal = sessionmaker(
 )
 
 
-# EN: Base model
-# JP: ベースモデル
-# KR: 기본 모델
+# EN: Base class for database models
+# JP: データベースモデル用ベースクラス
+# KR: 데이터베이스 모델용 기본 클래스
 
 Base = declarative_base()
 
-# EN: Database dependency
-# JP: データベース依存関係
-# KR: 데이터베이스 의존성
+
+# EN: Dependency for database session
+# JP: データベースセッション用依存関係
+# KR: 데이터베이스 세션용 의존성
 
 def get_db():
-
     db = SessionLocal()
 
     try:
