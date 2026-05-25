@@ -2,9 +2,9 @@
 
 Mini User API is a backend CRUD application built with FastAPI, PostgreSQL, and SQLAlchemy.
    
-### Mini User APIは、FastAPI、PostgreSQL、およびSQLAlchemyを使用して構築されたバックエンドCRUDアプリケーションです。
+## Mini User APIは、FastAPI、PostgreSQL、およびSQLAlchemyを使用して構築されたバックエンドCRUDアプリケーションです。
 
-### Mini User API는 FastAPI, PostgreSQL 및 SQLAlchemy를 사용하여 구축된 백엔드 CRUD 애플리케이션입니다.
+## Mini User API는 FastAPI, PostgreSQL 및 SQLAlchemy를 사용하여 구축된 백엔드 CRUD 애플리케이션입니다.
 ---
 
 The project allows users to:
