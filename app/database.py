@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -7,8 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 # JP: PostgreSQL データベースURL
 # KR: PostgreSQL 데이터베이스 URL
 
-DATABASE_URL = "postgresql://localhost/mini_user_api_db"
-
+DATABASE_URL = "postgresql://amagloire@localhost:5432/mini_user_api_db"
 
 # EN: Create database engine
 # JP: データベースエンジン作成

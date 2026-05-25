@@ -108,12 +108,14 @@ def verify_token(token: str):
         )
 
         username = payload.get("sub")
+        role = payload.get("role")
 
         if username is None:
             return None
 
-        return }
-            "username": username
+        return {
+            "username": username,
+            "role": role
         }
 
     except JWTError:
@@ -129,15 +131,27 @@ def get_current_user(
     token: str = Depends(oauth2_scheme)
 ):
 
-    username = verify_token(token)
+    current_user = verify_token(token)
 
-    if username is None:
-
+    if current_user is None:
         raise HTTPException(
             status_code=401,
             detail="Invalid authentication credentials"
         )
 
-    return }
-        "username": username
-    }
+    return current_user
+
+
+# EN: Admin permission checker
+# JP: 管理者権限確認
+# KR: 관리자 권한 확인
+
+def require_admin(current_user = Depends(get_current_user)):
+
+    if current_user["role"] != "admin":
+        raise HTTPException(
+            status_code=403,
+            detail="Admin access required"
+        )
+
+    return current_user

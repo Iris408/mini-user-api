@@ -1,18 +1,17 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
-
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models.user_model import UserRequest, User
+from app.models.user_model import UserRequest, UserUpdateRequest, User
 
 from app.auth import (
-    hash_password,
+    create_access_token,
     verify_password,
-    create_access_token
+    hash_password,
+    get_current_user,
+    require_admin
 )
-
-from app.auth import get_current_user
 
 
 # EN: Create router
@@ -98,7 +97,8 @@ def login_user(
 
     access_token = create_access_token(
         data={
-            "sub": user.username
+            "sub": user.username,
+            "role": user.role
         }
     )
 
@@ -113,7 +113,7 @@ def login_user(
 
 @router.get("/profile")
 def get_profile(
-    current_user = Depends(get_current_user)
+    current_user = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
 
@@ -123,7 +123,8 @@ def get_profile(
 
     return {
         "id": user.id,
-        "username": user.username
+        "username": user.username,
+        "role": user.role
     }
 
 
@@ -178,9 +179,10 @@ def get_profile(
     }
 
 
-# EN: Get all users from database
-# JP: データベースから全ユーザー取得
-# KR: 데이터베이스에서 모든 사용자 조회
+# EN: Get all users from PostgreSQL
+# JP: PostgreSQLから全ユーザー取得
+# KR: PostgreSQL에서 모든 사용자 조회
+
 
 @router.get("/users")
 def get_users(db: Session = Depends(get_db)):
@@ -188,12 +190,13 @@ def get_users(db: Session = Depends(get_db)):
     users = db.query(User).all()
 
     return {
+
         "users": users
     }
 
-# EN: Get one user from database by ID
-# JP: IDでデータベースから1人のユーザー取得
-# KR: ID로 데이터베이스에서 사용자 1명 조회
+# EN: Get one user by ID from PostgreSQL
+# JP: PostgreSQL からIDでユーザーを1人取得
+# KR: PostgreSQL에서 ID로 사용자 1명 조회
 
 @router.get("/users/{user_id}")
 def get_user(
@@ -203,49 +206,69 @@ def get_user(
 
     user = db.query(User).filter(User.id == user_id).first()
 
-    if user:
-        return {
-            "user": user
-        }
+    if user is None:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
 
     return {
-        "error": "User not found"
+        "user": user
     }
 
-# EN: Update user in database
-# JP: データベース内ユーザー更新
-# KR: 데이터베이스 사용자 수정
+# EN: Update user by ID in PostgreSQL
+# JP: PostgreSQL 内のユーザーをIDで更新
+# KR: PostgreSQL에서 ID로 사용자 수정
 
 @router.put("/users/{user_id}")
 def update_user(
     user_id: int,
-    request: UserRequest,
+    request: UserUpdateRequest,
     db: Session = Depends(get_db)
 ):
 
     user = db.query(User).filter(User.id == user_id).first()
 
-    if user:
+    if user is None:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
 
-        user.name = request.name
-        user.age = request.age
+    user.username = request.username
+    user.role = request.role
 
-        db.commit()
-
-        db.refresh(user)
-
-        return {
-            "message": "User updated",
-            "user": user
-        }
+    db.commit()
+    db.refresh(user)
 
     return {
-        "error": "User not found"
+        "message": "User updated",
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "role": user.role
+        }
     }
 
-# EN: Delete user from database
-# JP: データベースからユーザー削除
-# KR: 데이터베이스에서 사용자 삭제
+
+# EN: Admin dashboard route
+# JP: 管理者ダッシュボードルート
+# KR: 관리자 대시보드 라우트
+
+@router.get("/admin/dashboard")
+def admin_dashboard(
+    admin_user = Depends(require_admin)
+):
+
+    return {
+        "message": "Admin dashboard accessed",
+        "admin_user": admin_user
+    }
+
+
+# EN: Delete user by ID from PostgreSQL
+# JP: PostgreSQL からIDでユーザーを削除
+# KR: PostgreSQL에서 ID로 사용자 삭제
 
 @router.delete("/users/{user_id}")
 def delete_user(
@@ -255,16 +278,36 @@ def delete_user(
 
     user = db.query(User).filter(User.id == user_id).first()
 
-    if user:
+    if user is None:
+        raise HTTPException(
+            status_code=404,
+            detail="User not found"
+        )
 
-        db.delete(user)
+    deleted_user = {
+        "id": user.id,
+        "username": user.username,
+        "role": user.role
+    }
 
-        db.commit()
-
-        return {
-            "message": "User deleted"
-        }
+    db.delete(user)
+    db.commit()
 
     return {
-        "error": "User not found"
+        "message": "User deleted",
+        "deleted_user": deleted_user
+    }
+
+
+# EN: Admin-only route
+# JP: 管理者専用ルート
+# KR: 관리자 전용 라우트
+
+@router.get("admin")
+def admin_dashboard(
+    current_user = Depends(require_admin)
+):
+    return {
+        "message": "Welcome Admin",
+        "user": current_user
     }
