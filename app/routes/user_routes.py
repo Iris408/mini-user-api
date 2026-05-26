@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models.user_model import UserRequest, UserUpdateRequest, User
+from app.models.user_model import UserRequest,UserLoginRequest, UserUpdateRequest, User
 
 from app.auth import (
     create_access_token,
@@ -61,51 +61,43 @@ def register_user(
         "message": "User registered successfully"
     }
 
-# EN: User login route
-# JP: ユーザーログインルート
-# KR: 사용자 로그인 라우트
+# =========================================
+# EN: Login user
+# JP: ユーザーログイン
+# KR: 사용자 로그인
+# =========================================
 
 @router.post("/login")
 def login_user(
-    form_data: OAuth2PasswordRequestForm = Depends(),
+    request: UserLoginRequest,
     db: Session = Depends(get_db)
 ):
 
-    # EN: Find user by username
     user = db.query(User).filter(
-       User.username == form_data.username
+        User.username == request.username
     ).first()
 
-    if not user:
-
-        raise HTTPExecption(
-            status_code=401,
-            detail="Invlaid username or password"
-        )
-
-    valid_password = verify_password(
-        form_data.password,
-        user.hashed_password
-    )
-
-    if not valid_password:
-
+    if user is None:
         raise HTTPException(
             status_code=401,
-            detail="Invlaid username or password"
+            detail="Invalid username or password"
         )
 
-    access_token = create_access_token(
-        data={
-            "sub": user.username,
-            "role": user.role
-        }
-    )
+    if not verify_password(request.password, user.hashed_password):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid username or password"
+        )
 
     return {
-        "access_token": access_token,
-        "token_type": "bearer"
+        "message": "Login successful",
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "role": user.role
+        }
     }
+
 
 # EN: Protected profile route
 # JP: 保護プロフィールルート

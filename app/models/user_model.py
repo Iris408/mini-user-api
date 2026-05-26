@@ -14,6 +14,13 @@ class UserRequest(BaseModel):
     password: str
     role: str = "user"
 
+class UserLoginRequest(BaseModel):
+    username: str
+    password: str
+
+class UserUpdateRequest(BaseModel):
+    username: str
+    role: str = "user"
 
 # =========================================
 # EN: Request model for updating a user
