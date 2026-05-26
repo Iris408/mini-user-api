@@ -77,7 +77,7 @@ def verify_password(
 # KR: JWT 설정
 # =========================================
 
-SECRET_KEY = "temporary_secret_key_change_later"
+SECRET_KEY = os.getenv("SECRET_KEY", "temporary_secret_key_change_later")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
