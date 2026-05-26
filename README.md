@@ -1,10 +1,8 @@
-# Mini User API / ミニユーザーAPI / 미니 사용자 API
+# Mini User API / ミニユーザーAPI
 
 Mini User API is a backend CRUD application built with FastAPI, PostgreSQL, and SQLAlchemy.
  
- Mini User APIは、FastAPI、PostgreSQL、およびSQLAlchemyを使用して構築されたバックエンドCRUDアプリケーションです。
-
- Mini User API는 FastAPI, PostgreSQL 및 SQLAlchemy를 사용하여 구축된 백엔드 CRUD 애플리케이션입니다.
+## Mini User APIは、FastAPI、PostgreSQL、およびSQLAlchemyを使用して構築されたバックエンドCRUDアプリケーションです。
 
 ---
 
@@ -19,18 +17,22 @@ The application uses persistent PostgreSQL database storage instead of temporary
 
 ---
 
-## Tech Stack / 技術スタック / 기술 스택
+## Tech Stack / 技術スタック
 
 - Python
 - FastAPI
 - PostgreSQL
 - SQLAlchemy
 - Uvicorn
+- Docker
+- Docker Compose
+- JWT Authentication
+- bcrypt password hashing
 - Git/GitHub
 
 ---
 
-## Features / 機能 / 기능
+## Features / 機能
 
 - RESTful CRUD API
 - PostgreSQL database integration
@@ -39,10 +41,29 @@ The application uses persistent PostgreSQL database storage instead of temporary
 - Modular backend architecture
 - JSON request validation
 - Swagger API documentation
+- Password hashing with bcrypt
+- JWT access token generation
+- OAuth2 token route for Swagger authorization
+- Protected user profile route
+- Dockerized FastAPI and PostgreSQL setup
 
 ---
 
-## Project Structure / プロジェクト構成 / 프로젝트 구조
+## Authentication / 認証
+
+This project includes basic JWT authentication.
+
+Authentication features include:
+
+- Password hashing before storing user passwords
+- Login route for username/password validation
+- JWT access token generation
+- OAuth2 `/token` route for Swagger authorization
+- Protected `/profile` route requiring a valid token
+
+---
+
+## Project Structure / プロジェクト構成
 
 ```text
 app/
@@ -57,7 +78,7 @@ app/
 
 ---
 
-## Installation / インストール / 설치
+## Installation / インストール
 
 • Clone Respository
 
@@ -114,11 +135,14 @@ docker-compose up --build
 
 ---
  
-## API Endpoints
+## API Endpoints | APIエンドポイント
 
 | Method | Endpoint | Description |
 |---|---|---|
 | POST | `/users` | Create a new user |
+| POST | `/login` | Login user with JSON request |
+| POST | `/token` | OAuth2 token login for Swagger authorization |
+| GET | `/profile` | Get protected user profile |
 | GET | `/users` | Get all users |
 | GET | `/users/{user_id}` | Get one user by ID |
 | PUT | `/users/{user_id}` | Update a user |
@@ -132,14 +156,20 @@ docker-compose up --build
 - SQLAlchemy database models
 - FastAPI dependency injection
 - Persistent database storage
+- Password hashing with bcrypt
+- JWT authentication
+- OAuth2 Swagger authorization support
+- Protected `/profile` route
+- Docker support for FastAPI and PostgreSQL
 - Swagger API testing via `/docs`
 
 ---
 
 ## Future Improvements
 
-- JWT authentication
-- Docker support
 - AWS deployment
 - Frontend integration
 - CI/CD pipelines
+- Automated testing
+- Improved role-based access control
+- Refresh token support
