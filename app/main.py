@@ -21,7 +21,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(analyzer_router)
+Base.metadat.create_all(bind=engine)
+
 app.include_router(user_router)
 
 
