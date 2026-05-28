@@ -1,6 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, FastAPI
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+
+from typing import Annotated
 
 from app.database import get_db
 from app.models.user_model import (
@@ -190,9 +192,13 @@ def get_profile(
 
 @router.get("/users")
 def get_users(
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
 
+    if current_user["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Admins only")
+    
     users = db.query(User).all()
 
     return {
