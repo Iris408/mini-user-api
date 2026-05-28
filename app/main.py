@@ -14,7 +14,7 @@ app = FastAPI()
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://jwt-authentication-dashboard-sepia.vercel.app/"
+    "https://jwt-authentication-dashboard-sepia.vercel.app"
 ]
 
 app.add_middleware(
