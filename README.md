@@ -75,7 +75,7 @@ Authentication features include:
 
 ## Installation / インストール
 
-Clone the respository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/Iris408/mini-user-api
@@ -138,11 +138,11 @@ docker-compose up --build
 | POST | `/login` | Login user with JSON request |
 | POST | `/token` | OAuth2 token login for Swagger authorization |
 | GET | `/profile` | Get protected user profile |
-| GET | `/users` | Get all users |
+| GET | `/users` | Get all users - admin only |
 | GET | `/users/{user_id}` | Get one user by ID |
 | PUT | `/users/{user_id}` | Update a user |
 | DELETE | `/users/{user_id}` | Delete a user |
-| GET | `/` 
+| GET | `/` | Home/Health check |
 
 --- 
 
@@ -158,6 +158,8 @@ docker-compose up --build
 - Protected `/profile` route
 - Docker support for FastAPI and PostgreSQL
 - Swagger API testing via `/docs`
+- Backend deployed on Render
+- Connected to JWT Authentication Dashboard frontend
 
 ---
 
