@@ -318,3 +318,13 @@ def delete_user(
         "message": "User deleted",
         "deleted_user": deleted_user
     }
+
+# =========================================
+# EN: Home route / health check
+# JP: ホームルート / ヘルスチェック
+# KR: 홈 라우트 / 헬스 체크
+# =========================================
+
+@app.get("/")
+def home():
+    return {"message": "Mini User API is running"}

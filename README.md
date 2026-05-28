@@ -1,8 +1,10 @@
 # Mini User API / ミニユーザーAPI
 
-Mini User API is a backend CRUD application built with FastAPI, PostgreSQL, and SQLAlchemy.
- 
-## Mini User APIは、FastAPI、PostgreSQL、およびSQLAlchemyを使用して構築されたバックエンドCRUDアプリケーションです。
+Mini User API is a FastAPI backend with PostgreSQL and SQLAlchemy, providing JWT authentication 
+and role-based access control for the JWT Authentication Dashboard frontend.
+
+Mini User APIは、JWT認証ダッシュボードフロントエンド向けに、JWT認証とロールベースアクセス制御を提供する
+FastAPIバックエンドです。
 
 ---
 
@@ -14,6 +16,14 @@ The project allows users to:
 - Delete users
 
 The application uses persistent PostgreSQL database storage instead of temporary in-memory storage.
+
+---
+
+## Live Demo / ライブデモ
+
+```text
+https://mini-user-api.onrender.com/docs
+```
 
 ---
 
@@ -63,40 +73,25 @@ Authentication features include:
 
 ---
 
-## Project Structure / プロジェクト構成
-
-```text
-app/
-├── routes/
-│   └── user_routes.py
-├── models/
-│   └── user_model.py
-├── services/
-├── database.py
-└── main.py
-```
-
----
-
 ## Installation / インストール
 
-• Clone Respository
+Clone the respository:
 
 ```bash
 git clone https://github.com/Iris408/mini-user-api
 ```
 
-• Move into project folder
+Move into project folder:
 ```bash
 cd mini-user-api
 ```
 
-• Install dependencies
+Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
  
-• Start PostgreSQL
+Start PostgreSQL:
 ```bash
 psql postgres
 ```
@@ -104,11 +99,11 @@ psql postgres
 CREATE DATABASE mini_user_api_db;
 ```
 
-• Exit PostgreSQL:
+Exit PostgreSQL:
 ```SQL
 \q
 ```
-• Run FastAPI server
+Run the FastAPI server:
 ```bash
 uvicorn app.main:app --reload --port 8002
 ```
@@ -120,7 +115,7 @@ uvicorn app.main:app --reload --port 8002
 docker compose up --build
 ```
 
-• Open Swagger UI
+Open Swagger UI:
 ```text
 http://127.0.0.1:8002/docs
 ```
@@ -147,6 +142,7 @@ docker-compose up --build
 | GET | `/users/{user_id}` | Get one user by ID |
 | PUT | `/users/{user_id}` | Update a user |
 | DELETE | `/users/{user_id}` | Delete a user |
+| GET | `/` 
 
 --- 
 
@@ -167,9 +163,8 @@ docker-compose up --build
 
 ## Future Improvements
 
-- AWS deployment
-- Frontend integration
+- Refresh token support
 - CI/CD pipelines
 - Automated testing
 - Improved role-based access control
-- Refresh token support
+- Docker production optimisation
