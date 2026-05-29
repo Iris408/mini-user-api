@@ -56,6 +56,7 @@ https://mini-user-api.onrender.com/docs
 - OAuth2 token route for Swagger authorization
 - Protected user profile route
 - Dockerized FastAPI and PostgreSQL setup
+- Backend CI pipeline with GitHub Actions
 
 ---
 
