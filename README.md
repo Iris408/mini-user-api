@@ -37,6 +37,7 @@ The application uses persistent PostgreSQL database storage instead of temporary
 ## Portfolio Ready v1 / ポートフォリオ準備完了 v1
 
 | Area |	Status |
+| --- | --- |
 | Backend API	| ✅ Complete |
 | PostgreSQL database	| ✅ Connected |
 | JWT authentication	| ✅ Working |
