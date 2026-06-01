@@ -2,9 +2,11 @@ name: Backend CI
 
 on:
   push:
-    branches: [main]
+    branches: 
+      - main
   pull_request:
-    branches: [main]
+    branches: 
+      - main
 
 jobs:
   backend-check:
@@ -29,8 +31,8 @@ jobs:
       SECRET_KEY: github-actions-test-secret      
 
     steps:
-      # Step 1: checkout code  
-      - name: Checkout code  
+      # Step 1: checkout repository  
+      - name: Checkout repository  
         uses: actions/checkout@v4
 
       # Step 2: setup Python
@@ -38,19 +40,30 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip"
 
       # Step 3: install dependencies
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt
+          pip install -r requirements.txt
 
-      # Step 4: check Python files compile 
-      - name: Check Python syntax
-        run: python3 -m compileall app
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          for i in {1..10}; do
+            pg_isready -h localhost -p 5433 -U postgres && break
+            echo "Waiting for PostgreSQL to be ready..."  
+            sleep 3
+          done  
 
       - name: Check database URL scheme
         run: |
           python3 -c "import os; print(os.getenv('DATABASE_URL').split(':')[0])"
+
+          
+      - name: Check Python syntax
+        run: |
+          python3 -m compileall app
+
+      - name: Check FastAPI app imports
+        run: |
           python3 -c "from app.main import app; print('FastAPI app imported successfully')"  
