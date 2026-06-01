@@ -1,8 +1,10 @@
 import os
 
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
+load_dotenv()
 
 # EN: Database URL can come from environment variable
 # JP: データベースURLは環境変数から取得可能
@@ -12,6 +14,9 @@ DATABASE_URL = os.getenv(
     "DATABASE_URL",
     "postgresql://amagloire@localhost:5432/mini_user_api_db"
 )
+
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
 
 # EN: Create database engine
