@@ -25,7 +25,7 @@ jobs:
           --health-timeout=5s
           --health-retries=5
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5433/mini_user_api_db
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mini_user_api_db
       SECRET_KEY: github-actions-test-secret      
 
     steps:
@@ -50,7 +50,7 @@ jobs:
       - name: Check Python syntax
         run: python3 -m compileall app
 
-      # Step 5: check FastAPI app imports
-      - name: Check FastAPI app imports
+      - name: Check database URL scheme
         run: |
+          python3 -c "import os; print(os.getenv('DATABASE_URL').split(':')[0])"
           python3 -c "from app.main import app; print('FastAPI app imported successfully')"  

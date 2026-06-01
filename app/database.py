@@ -12,7 +12,7 @@ load_dotenv()
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql://amagloire@localhost:5432/mini_user_api_db"
+    "postgresql://postgres:postgres@localhost:5432/mini_user_api_db"
 )
 
 if DATABASE_URL.startswith("postgres://"):
