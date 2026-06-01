@@ -19,6 +19,21 @@ The application uses persistent PostgreSQL database storage instead of temporary
 
 ---
 
+## Current Status
+
+| Status Item | Complete |
+|---|---|
+| Backend deployed on Render | ✅ |
+| PostgreSQL database connected | ✅ |
+| JWT authentication working | ✅ |
+| Role-based access control working | ✅ |
+| Docker support added | ✅ |
+| Swagger API documentation available | ✅ |
+| Backend CI workflow added with GitHub Actions | ✅ |
+| Backend CI passing | ✅ |
+
+---
+
 ## Live Demo / ライブデモ
 
 ```text
@@ -144,23 +159,6 @@ docker-compose up --build
 | PUT | `/users/{user_id}` | Update a user |
 | DELETE | `/users/{user_id}` | Delete a user |
 | GET | `/` | Home/Health check |
-
---- 
-
-## Current Status
-
-- Full PostgreSQL-backed CRUD functionality
-- SQLAlchemy database models
-- FastAPI dependency injection
-- Persistent database storage
-- Password hashing with bcrypt
-- JWT authentication
-- OAuth2 Swagger authorization support
-- Protected `/profile` route
-- Docker support for FastAPI and PostgreSQL
-- Swagger API testing via `/docs`
-- Backend deployed on Render
-- Connected to JWT Authentication Dashboard frontend
 
 ---
 
