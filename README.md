@@ -34,6 +34,22 @@ The application uses persistent PostgreSQL database storage instead of temporary
 
 ---
 
+## Portfolio Ready v1 / ポートフォリオ準備完了 v1
+
+| Area |	Status |
+| Backend API	| ✅ Complete |
+| PostgreSQL database	| ✅ Connected |
+| JWT authentication	| ✅ Working |
+| Role-based access control	| ✅ Working |
+| Docker support	| ✅ Complete |
+| Render deployment	| ✅ Live |
+| Swagger API documentation	| ✅ Available |
+| GitHub Actions CI	| ✅ Passing |
+
+This project is portfolio-ready as a deployed backend API with authentication, database persistence, Docker support, role-based access control, Swagger documentation, and CI checks.
+
+---
+
 ## Live Demo / ライブデモ
 
 ```text
@@ -165,7 +181,7 @@ docker-compose up --build
 ## Future Improvements
 
 - Refresh token support
-- CI/CD pipelines
+- Deployment automation improvements
 - Automated testing
 - Improved role-based access control
 - Docker production optimisation
