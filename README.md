@@ -71,6 +71,8 @@ When running with Docker Compose, the backend connects to PostgreSQL using the D
 DATABASE_URL =postgresql://postgres:postgres@db:5432/mini_user_api_db
 ```
 
+Ensure Docker Desktop is open and running.
+
 ```bash
 docker compose up --build
 ```
