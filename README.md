@@ -24,9 +24,8 @@ Mini User APIは、FastAPI、PostgreSQL、SQLAlchemy、JWT認証、ロールベ�
 ---
 ## Live Demo / ライブデモ
 
-```text
-https://mini-user-api.onrender.com/docs
-```
+[Mini User API Swagger Docs](https://mini-user-api.onrender.com/docs)
+
 ---
 
 # Installation / インストール
@@ -67,6 +66,8 @@ uvicorn app.main:app --reload --port 8002
 
 ## Run with Docker
 
+Ensure Docker Desktop is open and running.
+
 ```bash
 docker compose up --build
 ```
@@ -76,12 +77,25 @@ Open Swagger UI:
 http://127.0.0.1:8002/docs
 ```
 
-```text
-If `docker compose` does not work on someone’s machine, they can try:
+If `docker compose` does not work, try:
+
+```bash
+docker compose down
 ```
 
 ```bash
 docker-compose up --build
+```
+
+If `Docker` is not available, the project can still be run manually:
+```bash
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8002
+```
+
+Open Swagger UI:
+```text
+http://127.0.0.1:8002/docs
 ```
 
 ---
