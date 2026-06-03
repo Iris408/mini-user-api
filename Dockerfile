@@ -32,4 +32,4 @@ COPY . .
 # JP: FastAPI サーバー起動
 # KR: FastAPI 서버 시작
 
-CMD ["sh", "-c", "uvicorn app.main:app", "--host", "0.0.0.0", "--port ${PORT:-10000}"]
+CMD ["sh", "-c", "uvicorn app.main:app", "--host", "0.0.0.0", "--port ${PORT:-8002}"]
