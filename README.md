@@ -6,7 +6,6 @@ Mini User API is a portfolio-ready FastAPI backend with PostgreSQL, SQLAlchemy, 
 
 Mini User APIは、FastAPI、PostgreSQL、SQLAlchemy、JWT認証、ロールベースアクセス制御、Docker対応、Swaggerドキュメント、Renderデプロイ、GitHub Actions CIを備えたポートフォリオ用バックエンドAPIです。
 
----
 
 ## Portfolio Ready v1 / ポートフォリオ準備完了 v1
 
@@ -21,12 +20,11 @@ Mini User APIは、FastAPI、PostgreSQL、SQLAlchemy、JWT認証、ロールベ�
 | Swagger API documentation	| ✅ Available |
 | GitHub Actions CI	| ✅ Passing |
 
----
 ## Live Demo / ライブデモ
 
 [Mini User API Swagger Docs](https://mini-user-api.onrender.com/docs)
+[Min User API Root Endpoint](https://mini-user-api.onrender.com)
 
----
 
 # Installation / インストール
 
@@ -103,8 +101,6 @@ Open Swagger UI:
 http://127.0.0.1:8002/docs
 ```
 
----
-
 ## Features / 機能
 
 - RESTful CRUD API
@@ -121,8 +117,6 @@ http://127.0.0.1:8002/docs
 - Dockerized FastAPI and PostgreSQL setup
 - Backend CI pipeline with GitHub Actions
 
----
-
 ## Tech Stack / 技術スタック
 
 - Python
@@ -137,8 +131,6 @@ http://127.0.0.1:8002/docs
 - bcrypt password hashing
 - Git/GitHub
 - GitHub Actions
-
----
 
 ## Authentication / 認証
 
@@ -156,11 +148,14 @@ Authentication features include:
 
 | Method | Endpoint | Description |
 |---|---|---|
+| GET | `/` | API status check |
+| POST | `/auth/register` | Register a new user |
 | POST | `/auth/login` | Login and receive JWT token |
-| GET | `/profile` | Get authenticated user profile |
-| GET | `/users` | Get all users — admin only |
+| GET | `/users/me` | Get current authenticated user |
+| GET | `/users` | Admin-only user list |
+| GET | `/docs` | Swagger API documentation |
 
----
+各エンドポイントはSwagger UIから確認・テストできます。認証が必要なルートでは、JWTアクセストークンを `Authorization` ヘッダーに付与してリクエストします。
 
 ## Future Improvements
 
