@@ -29,6 +29,6 @@ Base.metadata.create_all(bind=engine)
 
 app.include_router(user_router)
 
-@app.get("/")
-def home():
-    return {"message": "Backend project is structured!"}
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "service": "mini-user-api"}
