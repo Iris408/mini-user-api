@@ -62,6 +62,11 @@ Run the FastAPI server locally:
 uvicorn app.main:app --reload --port 8002
 ```
 
+Open Swagger UI:
+```text
+http://127.0.0.1:8002/docs
+```
+
 ### Docker database connection
 
 When running with Docker Compose, the backend connects to PostgreSQL using the Docker service name:
@@ -69,12 +74,10 @@ When running with Docker Compose, the backend connects to PostgreSQL using the D
 DATABASE_URL =postgresql://postgres:postgres@db:5432/mini_user_api_db
 ```
 
-Ensure Docker Desktop is open and running.
-
+Ensure Docker Desktop is open and running:
 ```bash
 docker compose up --build
 ```
-
 Open Swagger UI:
 ```text
 http://127.0.0.1:8002/docs
