@@ -101,6 +101,35 @@ Open Swagger UI:
 http://127.0.0.1:8002/docs
 ```
 
+### Running Tests / テスト実行
+
+This project uses pytest for backend testing.
+
+このプロジェクトでは、バックエンドテストに pytest を使用しています。
+
+**Run tests with Docker Compose**
+Make sure the Docker containers are running:
+```bash
+docker compose up -d --build
+```
+
+Run the test suite inside the API container:
+```bash
+docker compose exec api pytest
+```
+
+**Current test coverage / 現在のテスト範囲**
+
+Current basic test coverage includes:
+
+* Health check endpoint
+* OpenAPI schema availability
+
+現在の基本的なテスト範囲は以下です。
+
+* ヘルスチェックエンドポイント
+* OpenAPIスキーマの確認
+
 ## Features / 機能
 
 - RESTful CRUD API
@@ -114,8 +143,10 @@ http://127.0.0.1:8002/docs
 - JWT access token generation
 - OAuth2 token route for Swagger authorization
 - Protected user profile route
+- Role-based admin-only user list
 - Dockerized FastAPI and PostgreSQL setup
 - Backend CI pipeline with GitHub Actions
+- Basic backend testing with pytest
 
 ## Tech Stack / 技術スタック
 
@@ -129,6 +160,7 @@ http://127.0.0.1:8002/docs
 - Render deployment
 - JWT Authentication
 - bcrypt password hashing
+- pytest
 - Git/GitHub
 - GitHub Actions
 
@@ -159,9 +191,12 @@ Authentication features include:
 
 ## Future Improvements
 
-- Automated testing
-- Environment variable documentation cleanup
-- Refresh token support
-- Improved role-based access control
-- Docker production optimisation
-- Deployment automation improvements
+* Expand automated test coverage
+* Add authentication route tests
+* Add protected route tests
+* Add admin-only route tests
+* Environment variable documentation cleanup
+* Refresh token support
+* Improved role-based access control
+* Docker production optimisation
+* Deployment automation improvements
