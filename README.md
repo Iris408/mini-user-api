@@ -1,11 +1,8 @@
-# Mini User API
+# Mini User API / ミニユーザーAPI
 
 Mini User API is a portfolio-ready FastAPI backend with PostgreSQL, SQLAlchemy, JWT authentication, role-based access control, Docker support, Swagger documentation, Render deployment, and GitHub Actions CI.
 
-## ミニユーザーAPI
-
 Mini User APIは、FastAPI、PostgreSQL、SQLAlchemy、JWT認証、ロールベースアクセス制御、Docker対応、Swaggerドキュメント、Renderデプロイ、GitHub Actions CIを備えたポートフォリオ用バックエンドAPIです。
-
 
 ## Portfolio Ready v1 / ポートフォリオ準備完了 v1
 
@@ -22,11 +19,12 @@ Mini User APIは、FastAPI、PostgreSQL、SQLAlchemy、JWT認証、ロールベ�
 
 ## Live Demo / ライブデモ
 
-[Mini User API Swagger Docs](https://mini-user-api.onrender.com/docs)
-[Min User API Root Endpoint](https://mini-user-api.onrender.com)
+JWT Backend deployed on Render:
+* [Mini User API Swagger Docs](https://mini-user-api.onrender.com/docs)
+* [Mini User API Root Endpoint](https://mini-user-api.onrender.com)
 
 
-# Installation / インストール
+## Installation / インストール
 
 Clone the repository:
 
