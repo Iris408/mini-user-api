@@ -1,3 +1,5 @@
+![Backend CI](https://github.com/Iris408/mini-user-api/actions/workflows/backend-ci.yml/badge.svg)
+
 # Mini User API / ミニユーザーAPI
 
 Mini User API is a portfolio-ready FastAPI backend with PostgreSQL, SQLAlchemy, JWT authentication, role-based access control, Docker support, Swagger documentation, Render deployment, and GitHub Actions CI.
