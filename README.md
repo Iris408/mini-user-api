@@ -1,4 +1,5 @@
 ![Backend CI](https://github.com/Iris408/mini-user-api/actions/workflows/backend-ci.yml/badge.svg)
+![Docker CI](https://github.com/Iris408/mini-user-api/actions/workflows/docker-ci.yml/badge.svg)
 
 # Mini User API / ミニユーザーAPI
 
