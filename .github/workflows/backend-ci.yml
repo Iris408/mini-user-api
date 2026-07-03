@@ -2,14 +2,14 @@ name: Backend CI
 
 on:
   push:
-    branches: 
+    branches:
       - main
   pull_request:
-    branches: 
+    branches:
       - main
 
 jobs:
-  backend-check:
+  backend-checks:
     runs-on: ubuntu-latest
 
     services:
@@ -18,52 +18,41 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: mini_user_api_db
+          POSTGRES_DB: mini_user_api_test_db
         ports:
           - 5432:5432
         options: >-
-          --health-cmd="pg_isready -U postgres -d mini_user_api_db"
+          --health-cmd="pg_isready -U postgres"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5
+
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mini_user_api_db
-      SECRET_KEY: github-actions-test-secret      
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mini_user_api_test_db
+      SECRET_KEY: test-secret-key
+      ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 30
+      PYTHONPATH: .
 
     steps:
-      # Step 1: checkout repository  
-      - name: Checkout repository  
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: setup Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      # Step 3: install dependencies
-      - name: Install dependencies
+      - name: Install backend dependencies
         run: |
-          python3 -m pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install pytest
 
-      - name: Wait for PostgreSQL to be ready
-        run: |
-          for i in {1..10}; do
-            pg_isready -h localhost -p 5432 -U postgres && break
-            echo "Waiting for PostgreSQL to be ready..."  
-            sleep 3
-          done  
-
-      - name: Check database URL scheme
-        run: |
-          python3 -c "import os; print(os.getenv('DATABASE_URL').split(':')[0])"
-
-          
       - name: Check Python syntax
         run: |
-          python3 -m compileall app
+          python -m compileall app tests
 
-      - name: Check FastAPI app imports
+      - name: Run tests
         run: |
-          python3 -c "from app.main import app; print('FastAPI app imported successfully')"  
+          python -m pytest -q
