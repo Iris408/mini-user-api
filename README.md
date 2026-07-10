@@ -308,23 +308,13 @@ The goal of CI is to make sure changes are tested before they are merged into th
 
 ## Screenshots / スクリーンショット
 
-### Swagger API Docs
-![Swagger API Docs](screenshots/01-swagger-docs.png)
+| Swagger API Docs | Root Endpoint | Health Check |
+|---|---|---|
+| ![Swagger API Docs](screenshots/01-swagger-docs.png) | ![Root Endpoint](screenshots/02-root-endpoint.png) | ![Health Check](screenshots/03-health-endpoint.png) |
 
-### Root Endpoint
-![Root Endpoint](screenshots/02-root-endpoint.png)
-
-### Health Check Endpoint
-![Health Check Endpoint](screenshots/03-health-endpoint.png)
-
-### Database Readiness Endpoint
-![Database Readiness Endpoint](screenshots/04-ready-endpoint.png)
-
-### GitHub Actions CI
-![GitHub Actions CI](screenshots/05-github-actions-ci.png)
-
-### Render Deployment
-![Render Deployment](screenshots/06-render-deployment.png)
+| Database Readiness | GitHub Actions CI | Render Deployment |
+|---|---|---|
+| ![Database Readiness](screenshots/04-ready-endpoint.png) | ![GitHub Actions CI](screenshots/05-github-actions-ci.png) | ![Render Deployment](screenshots/06-render-deployment.png) |
 
 ---
 
