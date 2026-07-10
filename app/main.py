@@ -1,9 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import engine, Base
+from app.database import engine, Base, get_db
 from app.models.user_model import User
 from app.routes.user_routes import router as user_router
+
+from sqlalchemy import text
+from sqlalchemy.orm import Session
 
 
 app = FastAPI()
@@ -39,4 +42,22 @@ def root():
 
 @app.get("/health")
 def health_check():
-    return {"status": "ok", "service": "mini-user-api"}
+    return {
+        "status": "ok", 
+        "service": "mini-user-api"
+    }
+
+@app.get("/ready")
+def readiness_check(db: Session = Depends(get_db)):
+    try:
+        db.execute(text("SELECT 1"))
+        return {
+            "status": "ready",
+            "database": "connected",
+            "service": "mini-user-api"
+        }
+    except Exception:
+        raise HTTPException(
+            status_code=503,
+            detail="Database unavailable"
+        )
