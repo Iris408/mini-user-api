@@ -208,13 +208,17 @@ docker compose exec api pytest
 
 Current basic test coverage includes:
 
+* Root endpoint
 * Health check endpoint
+* Database readiness endpoint
 * OpenAPI schema availability
 
 現在の基本的なテスト範囲は以下です。
 
+* ルートエンドポイント
 * ヘルスチェックエンドポイント
-* OpenAPIスキーマの確認
+* データベース準備状況エンドポイント
+* OpenAPIスキーマの可用性
 
 各エンドポイントはSwagger UIから確認・テストできます。認証が必要なルートでは、JWTアクセストークンを `Authorization` ヘッダーに付与してリクエストします。
 
