@@ -308,25 +308,23 @@ The goal of CI is to make sure changes are tested before they are merged into th
 
 ## Screenshots / スクリーンショット
 
-Screenshots can be added to the `screenshots/` folder.
+### Swagger API Docs
+![Swagger API Docs](screenshots/01-swagger-docs.png)
 
-Recommended screenshots:
+### Root Endpoint
+![Root Endpoint](screenshots/02-root-endpoint.png)
 
-```txt
-screenshots/
-  01-swagger-docs.png
-  02-root-endpoint.png
-  03-health-endpoint.png
-  04-ready-endpoint.png
-  05-github-actions-ci.png
-  06-render-deployment.png
-```
+### Health Check Endpoint
+![Health Check Endpoint](screenshots/03-health-endpoint.png)
 
-Example README usage:
+### Database Readiness Endpoint
+![Database Readiness Endpoint](screenshots/04-ready-endpoint.png)
 
-```md
-![Swagger Docs](screenshots/01-swagger-docs.png)
-```
+### GitHub Actions CI
+![GitHub Actions CI](screenshots/05-github-actions-ci.png)
+
+### Render Deployment
+![Render Deployment](screenshots/06-render-deployment.png)
 
 ---
 
