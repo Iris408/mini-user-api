@@ -29,6 +29,14 @@ Base.metadata.create_all(bind=engine)
 
 app.include_router(user_router)
 
+@app.get("/")
+def root():
+    return {
+        "message": "Mini User API is running",
+        "status": "ok",
+        "docs": "/docs"
+    }
+
 @app.get("/health")
 def health_check():
     return {"status": "ok", "service": "mini-user-api"}
