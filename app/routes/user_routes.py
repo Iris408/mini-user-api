@@ -193,12 +193,14 @@ def get_profile(
 @router.get("/users")
 def get_users(
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user)
+    current_user: dict = Depends(get_current_user)
 ):
 
-    if not current_user.role or current_user.role.lower() != "admin":
+    user_role = current_user.get("role")
+
+    if not user_role or user_role.lower() != "admin":
         raise HTTPException(status_code=403, detail="Admins only")
-    
+
     users = db.query(User).all()
 
     return {
