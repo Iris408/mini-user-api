@@ -54,13 +54,9 @@ JWT backend deployed on Render:
 
 ## Screenshots
 
-| Swagger API Docs | Root Endpoint | Health Check |
+| Swagger API Docs | GitHub Actions CI | Render Deployment |
 | --- | --- | --- |
-| ![Swagger API Docs](screenshots/01-swagger-docs.png) | ![Root Endpoint](screenshots/02-root-endpoint.png) | ![Health Check](screenshots/03-health-endpoint.png) |
-
-| Database Readiness | GitHub Actions CI | Render Deployment |
-| --- | --- | --- |
-| ![Database Readiness](screenshots/04-ready-endpoint.png) | ![GitHub Actions CI](screenshots/05-github-actions-ci.png) | ![Render Deployment](screenshots/06-render-deployment.png) |
+| ![Swagger API Docs](screenshots/01-swagger-docs.png) | ![GitHub Actions CI](screenshots/05-github-actions-ci.png) | ![Render Deployment](screenshots/06-render-deployment.png) |
 
 ## Quick Start
 
