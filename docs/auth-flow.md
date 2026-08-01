@@ -1,10 +1,10 @@
 # Auth Flow
 
-This document explains the authentication flow used by Mini User API.
+This document explains the authentication flow used by Secure User Management API.
 
 ## Authentication Type
 
-Mini User API uses JWT access token authentication.
+Secure User Management API uses JWT access token authentication.
 
 The project includes:
 

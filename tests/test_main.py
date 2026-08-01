@@ -10,7 +10,7 @@ def test_health_check():
     assert response.status_code == 200
     assert response.json() == {
         "status": "ok",
-        "service": "mini-user-api",
+        "service": "secure-user-management-api",
     }
 
 def test_openapi_schema_available():

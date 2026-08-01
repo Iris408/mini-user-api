@@ -1,6 +1,6 @@
 # Project Details
 
-This document contains additional technical notes for Mini User API.
+This document contains additional technical notes for Secure User Management API.
 
 ## Architecture
 
