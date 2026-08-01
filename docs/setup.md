@@ -1,14 +1,14 @@
 # Setup Guide
 
-This document explains how to run Mini User API locally.
+This document explains how to run Secure User Management API locally.
 
 ## Installation
 
 Clone the repository:
 
 ```bash
-git clone https://github.com/Iris408/mini-user-api
-cd mini-user-api
+git clone https://github.com/Iris408/secure-user-management-api
+cd secure-user-management-api
 ```
 
 Install dependencies:
@@ -47,7 +47,7 @@ __pycache__/
 When running with Docker Compose, the backend connects to PostgreSQL using the Docker service name `db`.
 
 ```env
-DATABASE_URL=postgresql://postgres:postgres@db:5432/mini_user_api_db
+DATABASE_URL=postgresql://postgres:postgres@db:5432/secure_user_api_db
 ```
 
 Start the app with Docker Compose:
@@ -85,10 +85,10 @@ If Docker is not available, the project can be run manually.
 When running the backend directly with Uvicorn, use `localhost` instead of `db`:
 
 ```env
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/mini_user_api_db
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/secure_user_management_api_db
 ```
 
-Make sure PostgreSQL is running locally and that `mini_user_api_db` has already been created.
+Make sure PostgreSQL is running locally and that `secure_user_management_api_db` has already been created.
 
 Run the FastAPI server:
 

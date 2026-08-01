@@ -9,7 +9,14 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 
-app = FastAPI()
+app = FastAPI(
+    title="Secure User Management API",
+    description=(
+        "A production-style API for authentication, "
+        "user management and role-based access control."
+    ),
+    version="1.0.0",
+)
 
 # EN: Allow frontend apps to call this backend API
 # JP: フロントエンドアプリがこのバックエンドAPIを呼び出せるようにする
@@ -40,7 +47,7 @@ app.include_router(user_router)
 @app.get("/")
 def root():
     return {
-        "message": "Mini User API is running",
+        "message": "Secure User Management API is running",
         "status": "ok",
         "docs": "/docs"
     }
@@ -49,7 +56,7 @@ def root():
 def health_check():
     return {
         "status": "ok", 
-        "service": "mini-user-api"
+        "service": "secure-user-management-api"
     }
 
 @app.get("/ready")
@@ -59,7 +66,7 @@ def readiness_check(db: Session = Depends(get_db)):
         return {
             "status": "ready",
             "database": "connected",
-            "service": "mini-user-api"
+            "service": "secure-user-management-api"
         }
     except Exception:
         raise HTTPException(

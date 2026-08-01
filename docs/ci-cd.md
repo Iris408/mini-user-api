@@ -1,6 +1,6 @@
 # CI/CD Notes
 
-This document explains the CI/CD checks used by Mini User API.
+This document explains the CI/CD checks used by Secure User Management API.
 
 ## Current CI Workflows
 

@@ -1,6 +1,6 @@
 # API Reference
 
-This document lists the main API endpoints used by Mini User API.
+This document lists the main API endpoints used by Secure User Management API.
 
 ## Core Endpoints
 

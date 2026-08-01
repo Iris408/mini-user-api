@@ -1,11 +1,9 @@
-![Backend CI](https://github.com/Iris408/mini-user-api/actions/workflows/backend-ci.yml/badge.svg)
-![Docker CI](https://github.com/Iris408/mini-user-api/actions/workflows/docker-ci.yml/badge.svg)
+![Backend CI](https://github.com/Iris408/secure-user-management-api/actions/workflows/backend-ci.yml/badge.svg)
+![Docker CI](https://github.com/Iris408/secure-user-management-api/actions/workflows/docker-ci.yml/badge.svg)
 
-# Mini User API
+# Secure User Management API
 
-Mini User API is a FastAPI backend project built with PostgreSQL, SQLAlchemy, JWT authentication, role-based access control, Docker, pytest, Render deployment, Swagger documentation, and GitHub Actions CI.
-
-The project demonstrates practical junior backend engineering skills including API design, authentication, password hashing, protected routes, admin-only access, database persistence, health checks, Docker support, testing, and CI/CD workflows.
+A production-style FastAPI backend for secure user management, JWT authentication, role-based access control and PostgreSQL persistence.
 
 ## Live Demo
 
@@ -35,21 +33,14 @@ JWT backend deployed on Render:
 
 ## Features
 
-- RESTful FastAPI backend
-- PostgreSQL database integration
-- SQLAlchemy ORM models
-- User registration and login
-- Password hashing with bcrypt
-- JWT access token generation
-- OAuth2 token route for Swagger authorization
-- Protected authenticated user route
-- Role-based admin-only user list
-- Health check endpoint
-- Database readiness endpoint
-- Dockerized FastAPI and PostgreSQL setup
-- Backend testing with pytest
-- GitHub Actions backend and Docker CI
-- Render deployment
+- JWT authentication
+- Role-based access control
+- Protected user and administrator endpoints
+- PostgreSQL persistence
+- SQLAlchemy ORM
+- Docker Compose development environment
+- Automated testing with pytest
+- Continuous integration with GitHub Actions
 
 ## Tech Stack
 
@@ -76,8 +67,8 @@ JWT backend deployed on Render:
 Clone the repository:
 
 ```bash
-git clone https://github.com/Iris408/mini-user-api
-cd mini-user-api
+git clone https://github.com/Iris408/secure-user-management-api
+cd secure-user-management-api
 ```
 
 Run with Docker Compose:
@@ -118,7 +109,7 @@ More detailed project documentation is available in the `docs/` folder.
 
 ## Project Summary
 
-Mini User API is a backend portfolio project built to practise real API development skills: user authentication, JWT token handling, role-based access control, PostgreSQL persistence, Dockerized development, health checks, testing, deployment, and CI/CD validation.
+Secure User Management API is a backend portfolio project built to practise real API development skills: user authentication, JWT token handling, role-based access control, PostgreSQL persistence, Dockerized development, health checks, testing, deployment, and CI/CD validation.
 
 ## Author
 
