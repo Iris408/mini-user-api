@@ -16,20 +16,15 @@ JWT backend deployed on Render:
 
 ## Current Status
 
-| Area | Status |
-| --- | --- |
-| FastAPI backend | ✅ Complete |
-| PostgreSQL database | ✅ Connected |
-| SQLAlchemy ORM | ✅ Complete |
-| JWT authentication | ✅ Working |
-| Password hashing | ✅ Working |
-| Role-based access control | ✅ Working |
-| Docker support | ✅ Complete |
-| Render deployment | ✅ Live |
-| Swagger API documentation | ✅ Available |
-| Backend tests | ✅ Basic coverage added |
-| Backend CI | ✅ Passing |
-| Docker CI | ✅ Passing |
+| Area | Status | Area | Status |
+| --- | --- | --- | --- |
+| FastAPI backend | ✅ Complete | Docker support | ✅ Complete |
+| PostgreSQL database | ✅ Connected | Render deployment | ✅ Live |
+| SQLAlchemy ORM | ✅ Complete | Swagger API documentation | ✅ Available |
+| JWT authentication | ✅ Working | Backend tests | ✅ Basic coverage added |
+| Password hashing | ✅ Working | Backend CI | ✅ Passing |
+| Role-based access control | ✅ Working | Docker CI | ✅ Passing |
+
 
 ## Features
 
@@ -93,14 +88,14 @@ docker compose exec api pytest
 
 ## Documentation
 
-More detailed project documentation is available in the `docs/` folder.
+For more detailed project documentation this is available in the `docs/` folder.
 
 | Document | Description |
 | --- | --- |
 | [Setup Guide](./docs/setup.md) | Environment variables, Docker setup, manual setup, and test commands |
 | [API Reference](./docs/api-reference.md) | Main API endpoints and route notes |
 | [Auth Flow](./docs/auth-flow.md) | JWT authentication, protected routes, and admin-only access |
-| [Project Details](./docs/project-details.md) | Architecture, limitations, future improvements, and learning notes |
+| [Project Details](./docs/projects-details.md) | Architecture, limitations, future improvements, and learning notes |
 | [CI/CD Notes](./docs/ci-cd.md) | Backend CI and Docker CI workflow notes |
 
 ## Project Summary
@@ -109,4 +104,9 @@ Secure User Management API is a backend portfolio project built to practise real
 
 ## Author
 
-Built by Iris408
+Built by [Iris408](https://github.com/Iris408)
+
+## License
+This project is licensed under the MIT License.
+
+Please see the [LICENSE](LICENSE) file for details.
