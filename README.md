@@ -102,11 +102,9 @@ For more detailed project documentation this is available in the `docs/` folder.
 
 Secure User Management API is a backend portfolio project built to practise real API development skills: user authentication, JWT token handling, role-based access control, PostgreSQL persistence, Dockerized development, health checks, testing, deployment, and CI/CD validation.
 
+## License
+This project is licensed under the terms in [MIT LICENSE](./LICENSE) file for details.
+
 ## Author
 
 Built by [Iris408](https://github.com/Iris408)
-
-## License
-This project is licensed under the MIT License.
-
-Please see the [LICENSE](LICENSE) file for details.

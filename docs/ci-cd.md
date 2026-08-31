@@ -1,4 +1,4 @@
-# CI/CD Notes
+# CI Notes
 
 This document explains the CI/CD checks used by Secure User Management API.
 
@@ -29,7 +29,7 @@ Docker CI checks include:
 - Validating Docker setup
 - Confirming container build steps complete successfully
 
-## Why CI/CD Matters
+## Why CI Matters
 
 CI/CD helps confirm that the backend remains stable after changes, it checks:
 
